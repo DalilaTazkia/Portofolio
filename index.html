@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ringkasan Penjualan Mingguan - Power BI</title>
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Styles -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #4A90E2;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      padding: 1rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    .card {
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .chart-wrapper {
+      width: 100%;
+      height: 350px;
+    }
+    .insight {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Analisis Penjualan Mingguan</h1>
+    <p>Data penjualan 1–5 September 2025 — berdasarkan artikel Medium</p>
+  </header>
+
+  <div class="container">
+
+    <!-- KPI Summary -->
+    <div class="card">
+      <h2>Total Penjualan</h2>
+      <p class="insight">Total revenue yang diperoleh selama minggu pertama: <strong>Rp 48.000.000</strong>.<br>
+      Rata-rata per hari sekitar <strong>Rp 9,6 juta</strong>. Surabaya menjadi kontributor tertinggi.</p>
+    </div>
+
+    <!-- Chart: Distribusi per Kota -->
+    <div class="card">
+      <h2>Distribusi Penjualan per Kota</h2>
+      <div class="chart-wrapper">
+        <canvas id="cityChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Chart: Produk -->
+    <div class="card">
+      <h2>Distribusi Pendapatan per Produk</h2>
+      <div class="chart-wrapper">
+        <canvas id="productChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Story & Insights -->
+    <div class="card">
+      <h2>Insight Strategis</h2>
+      <ul class="insight">
+        <li><strong>Surabaya</strong> adalah kontributor terbesar dengan total penjualan tertinggi. </li>
+        <li><strong>Laptop</strong> menjadi produk unggulan dengan dominasi 58,95% dari total revenue.</li>
+        <li>Performa harian fluktuatif — kenaikan tertinggi terjadi pada <strong>01 September</strong>.</li>
+      </ul>
+      <p class="insight">Rekomendasi strategi: fokus peningkatan kontribusi HP, replikasi formula sukses Surabaya, dan peningkatan performa hari rendah. </p>
+    </div>
+
+  </div>
+
+  <!-- Chart.js Scripts -->
+  <script>
+    const cityCtx = document.getElementById("cityChart").getContext("2d");
+    const cityChart = new Chart(cityCtx, {
+      type: "bar",
+      data: {
+        labels: ["Surabaya", "Jakarta", "Bandung"],
+        datasets: [{
+          label: "Revenue per Kota (Rp Juta)",
+          data: [18, 16, 14],
+          backgroundColor: ["#2E86AB","#F18F01","#8E44AD"],
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true, ticks: { callback: v => 'Rp ' + v + ' Jt' }}
+        }
+      }
+    });
+
+    const productCtx = document.getElementById("productChart").getContext("2d");
+    const productChart = new Chart(productCtx, {
+      type: "pie",
+      data: {
+        labels: ["Laptop", "Tablet", "HP"],
+        datasets: [{
+          label: "Persentase Produk",
+          data: [58.95, 25.26, 15.79],
+          backgroundColor: ["#27AE60","#E74C3C","#3498DB"]
+        }]
+      },
+      options: {
+        responsive: true,
+      }
+    });
+  </script>
+</body>
+</html>
