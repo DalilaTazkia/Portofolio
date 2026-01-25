@@ -1,131 +1,192 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ringkasan Penjualan Mingguan - Power BI</title>
-  
-  <!-- Chart.js -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Sales Dashboard | Data Analytics Portfolio</title>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <!-- Styles -->
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
       margin: 0;
-      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #f4f6f9;
+      color: #333;
     }
+
     header {
-      background-color: #4A90E2;
+      background: linear-gradient(135deg, #1f3c88, #4a90e2);
       color: white;
-      padding: 1rem;
+      padding: 2rem;
       text-align: center;
     }
-    .container {
-      padding: 1rem;
-      max-width: 900px;
+
+    section {
+      max-width: 1100px;
       margin: auto;
+      padding: 2rem 1rem;
     }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
     .card {
       background: white;
-      border-radius: 5px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 1rem;
-      margin-bottom: 1rem;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
     }
-    .chart-wrapper {
-      width: 100%;
-      height: 350px;
+
+    h2 {
+      margin-top: 0;
+      color: #1f3c88;
     }
-    .insight {
-      font-size: 1.1rem;
-      line-height: 1.6;
+
+    .kpi {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #4a90e2;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #1f3c88;
+      color: white;
+      margin-top: 3rem;
+    }
+
+    canvas {
+      max-height: 350px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #eaf1ff;
+      color: #1f3c88;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-right: 6px;
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>Analisis Penjualan Mingguan</h1>
-    <p>Data penjualan 1–5 September 2025 — berdasarkan artikel Medium</p>
-  </header>
 
-  <div class="container">
+<header>
+  <h1>Weekly Sales Performance Dashboard</h1>
+  <p>Data Analytics Portfolio Project | Power BI Case Study (Web Version)</p>
+</header>
 
-    <!-- KPI Summary -->
-    <div class="card">
-      <h2>Total Penjualan</h2>
-      <p class="insight">Total revenue yang diperoleh selama minggu pertama: <strong>Rp 48.000.000</strong>.<br>
-      Rata-rata per hari sekitar <strong>Rp 9,6 juta</strong>. Surabaya menjadi kontributor tertinggi.</p>
-    </div>
-
-    <!-- Chart: Distribusi per Kota -->
-    <div class="card">
-      <h2>Distribusi Penjualan per Kota</h2>
-      <div class="chart-wrapper">
-        <canvas id="cityChart"></canvas>
-      </div>
-    </div>
-
-    <!-- Chart: Produk -->
-    <div class="card">
-      <h2>Distribusi Pendapatan per Produk</h2>
-      <div class="chart-wrapper">
-        <canvas id="productChart"></canvas>
-      </div>
-    </div>
-
-    <!-- Story & Insights -->
-    <div class="card">
-      <h2>Insight Strategis</h2>
-      <ul class="insight">
-        <li><strong>Surabaya</strong> adalah kontributor terbesar dengan total penjualan tertinggi. </li>
-        <li><strong>Laptop</strong> menjadi produk unggulan dengan dominasi 58,95% dari total revenue.</li>
-        <li>Performa harian fluktuatif — kenaikan tertinggi terjadi pada <strong>01 September</strong>.</li>
-      </ul>
-      <p class="insight">Rekomendasi strategi: fokus peningkatan kontribusi HP, replikasi formula sukses Surabaya, dan peningkatan performa hari rendah. </p>
-    </div>
-
+<section>
+  <h2>📌 Project Overview</h2>
+  <div class="card">
+    <p>
+      Project ini merupakan analisis penjualan mingguan (1–5 September) yang awalnya dibuat
+      menggunakan Power BI, lalu dikonversi menjadi dashboard web interaktif
+      sebagai bagian dari portfolio Data Analyst.
+    </p>
+    <div class="tag">Power BI</div>
+    <div class="tag">Data Visualization</div>
+    <div class="tag">Business Insight</div>
+    <div class="tag">Chart.js</div>
   </div>
+</section>
 
-  <!-- Chart.js Scripts -->
-  <script>
-    const cityCtx = document.getElementById("cityChart").getContext("2d");
-    const cityChart = new Chart(cityCtx, {
-      type: "bar",
-      data: {
-        labels: ["Surabaya", "Jakarta", "Bandung"],
-        datasets: [{
-          label: "Revenue per Kota (Rp Juta)",
-          data: [18, 16, 14],
-          backgroundColor: ["#2E86AB","#F18F01","#8E44AD"],
-          borderRadius: 4
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: { beginAtZero: true, ticks: { callback: v => 'Rp ' + v + ' Jt' }}
-        }
-      }
-    });
+<section>
+  <h2>📊 Key Performance Indicators</h2>
+  <div class="grid">
+    <div class="card">
+      <p>Total Revenue</p>
+      <div class="kpi">Rp 48.000.000</div>
+    </div>
+    <div class="card">
+      <p>Average Daily Sales</p>
+      <div class="kpi">Rp 9,6 Juta</div>
+    </div>
+    <div class="card">
+      <p>Top City</p>
+      <div class="kpi">Surabaya</div>
+    </div>
+    <div class="card">
+      <p>Top Product</p>
+      <div class="kpi">Laptop</div>
+    </div>
+  </div>
+</section>
 
-    const productCtx = document.getElementById("productChart").getContext("2d");
-    const productChart = new Chart(productCtx, {
-      type: "pie",
-      data: {
-        labels: ["Laptop", "Tablet", "HP"],
-        datasets: [{
-          label: "Persentase Produk",
-          data: [58.95, 25.26, 15.79],
-          backgroundColor: ["#27AE60","#E74C3C","#3498DB"]
-        }]
-      },
-      options: {
-        responsive: true,
-      }
-    });
-  </script>
+<section>
+  <h2>🏙️ Sales Distribution by City</h2>
+  <div class="card">
+    <canvas id="cityChart"></canvas>
+  </div>
+</section>
+
+<section>
+  <h2>📦 Revenue Contribution by Product</h2>
+  <div class="card">
+    <canvas id="productChart"></canvas>
+  </div>
+</section>
+
+<section>
+  <h2>🧠 Business Insights</h2>
+  <div class="card">
+    <ul>
+      <li>Surabaya menjadi kontributor revenue tertinggi selama periode analisis.</li>
+      <li>Laptop mendominasi penjualan dengan kontribusi hampir 60% dari total revenue.</li>
+      <li>Penjualan harian bersifat fluktuatif, menunjukkan potensi optimasi promosi harian.</li>
+      <li>Produk HP memiliki potensi growth jika didukung strategi bundling atau diskon.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>🚀 Recommendations</h2>
+  <div class="card">
+    <p>
+      Berdasarkan analisis, strategi yang direkomendasikan adalah:
+      fokus pada replikasi strategi Surabaya ke kota lain,
+      meningkatkan visibility produk non-laptop,
+      dan optimalisasi campaign pada hari dengan performa rendah.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>Created by Kiaa | Data Analytics Portfolio</p>
+</footer>
+
+<script>
+  new Chart(document.getElementById("cityChart"), {
+    type: "bar",
+    data: {
+      labels: ["Surabaya", "Jakarta", "Bandung"],
+      datasets: [{
+        label: "Revenue (Rp Juta)",
+        data: [18, 16, 14],
+        borderRadius: 6
+      }]
+    },
+    options: { responsive: true }
+  });
+
+  new Chart(document.getElementById("productChart"), {
+    type: "doughnut",
+    data: {
+      labels: ["Laptop", "Tablet", "HP"],
+      datasets: [{
+        data: [58.95, 25.26, 15.79]
+      }]
+    },
+    options: { responsive: true }
+  });
+</script>
+
 </body>
 </html>
